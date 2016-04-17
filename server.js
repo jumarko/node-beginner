@@ -11,10 +11,7 @@ function start(route, handle) {
         var pathname = url.parse(request.url).pathname;
         console.log("Request for " + pathname + " received.");
 
-        response.writeHead(200, {"Content-Type" : "text/plain"});
-        var  responseBody = route(handle, pathname);
-        response.write(responseBody);
-        response.end();
+        route(handle, pathname, response);
     }
 
     http.createServer(onRequest).listen(port);
